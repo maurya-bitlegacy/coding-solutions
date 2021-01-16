@@ -1,0 +1,22 @@
+class Solution: # O(nlogn), O(1)
+    def shipWithinDays(self, weights: List[int], D: int) -> int:
+        low = max(weights)
+        high = sum(weights)
+        while(low<=high):
+            mid = (low+high)//2
+            cnt=0
+            summ=weights[-1]
+            for i in range(len(weights)-1,-1,-1):
+                if i==0:
+                    cnt+=1
+                    break
+                summ = summ+weights[i-1]
+                if summ>mid:
+                    cnt+=1
+                    summ=weights[i-1]
+            if cnt>D:
+                low = mid+1
+            else:
+                high = mid-1
+        return low
+        
