@@ -1,0 +1,28 @@
+class Solution: #Naive
+    def trap(self, height: List[int]) -> int:
+        total = 0
+        for i in range(1,len(height)-1):
+            wateratindex = max(0,min(max(height[0:i]), max(height[i+1:])) - height[i])
+            #print(wateratindex)
+            total+=wateratindex
+        return total
+        
+class Solution: O(n), O(n)
+    def trap(self, height: List[int]) -> int:
+        total = 0
+        maxheightright=[0 for i in range(len(height))]
+        curmax=0
+        for i in range(len(height)-2,-1,-1):
+            if height[i+1]>curmax:
+                curmax = height[i+1]
+            maxheightright[i] = curmax
+        #print(maxheightright)
+        maxheightleft=0
+        for i in range(1,len(height)-1):
+            if height[i-1]>maxheightleft:
+                maxheightleft=height[i-1]
+            #print(maxheightleft,maxheightright)   
+            wateratindex = max(0,min(maxheightleft, maxheightright[i]) - height[i])
+            #print(wateratindex)
+            total+=wateratindex
+        return total
