@@ -1,0 +1,23 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int largest=-1;
+        int indlargest = -1;
+        int smallest=10001;
+        int indsmallest = -1;
+        int largestdiff = 0;
+        for(int i=prices.length-1;i>-1;i--){
+            if(prices[i]>largest){
+                largest = prices[i];
+                indlargest = i;
+                smallest = 10001;
+                }
+            if(prices[i]<smallest && i<indlargest){
+                smallest = prices[i];
+                indsmallest = i;
+                }
+            if(indsmallest>-1 && indsmallest<indlargest)
+                largestdiff = Math.max(largestdiff, largest-smallest);
+        }
+        return largestdiff;
+    }
+}
