@@ -1,0 +1,20 @@
+class Solution: O(nlogn),O(1)
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        if not matrix or not matrix[0]:
+            return False
+        if target<matrix[0][0] or target>matrix[-1][-1]:
+            return False
+        for lis in matrix:
+            if target>lis[-1]:
+                continue # Arrive at the right list
+            low = 0
+            high = len(lis)-1
+            while(low<=high):
+                mid = (low+high)//2
+                if lis[mid]==target:
+                    return True
+                elif lis[mid]>target:
+                    high=mid-1
+                else:
+                    low=mid+1
+            return False
