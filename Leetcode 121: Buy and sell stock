@@ -31,7 +31,7 @@ class Solution { // O(n), O(1), Kevin
             if(prices[i]<minvalue)
                 minvalue = prices[i];
             else
-                maxprofit = Math.max(maxprofit,prices[i]-minvalue);
+                maxprofit = Math.max(maxprofit,prices[i]-minvalue); //Profit obtained if sold on this day
         }
         return maxprofit;
     }
