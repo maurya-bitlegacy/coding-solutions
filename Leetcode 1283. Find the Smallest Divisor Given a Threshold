@@ -1,0 +1,19 @@
+import math
+class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        low = 1
+        high = max(nums)
+        while(low<=high):
+            mid = (low+high)//2
+            summ=0
+            for element in nums:
+                div = math.ceil(element/mid)
+                summ+=div
+            if summ<=threshold:
+                high=mid-1
+            elif summ>threshold:
+                low=mid+1
+            #print(low,high)
+        return low            
+            
+        
