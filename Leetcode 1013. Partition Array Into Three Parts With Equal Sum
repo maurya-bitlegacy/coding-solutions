@@ -1,0 +1,17 @@
+class Solution:
+    def canThreePartsEqualSum(self, A: List[int]) -> bool:
+        summ=sum(A)
+        if(summ%3!=0):
+            return False
+        summ1,cnt=0,0
+        for num in A:
+            summ1 +=num
+            if(summ1==summ/3):
+                cnt+=1
+                summ1=0
+            if(cnt==3):
+                return True
+        #if cnt>=3:
+            #return True
+        return False
+        
