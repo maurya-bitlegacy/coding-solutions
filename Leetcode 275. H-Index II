@@ -1,4 +1,4 @@
-class Solution:
+class Solution: #O(log n)
     def hIndex(self, citations: List[int]) -> int:
         if not citations or citations[-1]==0:
             return 0
