@@ -1,0 +1,11 @@
+class Solution:
+    def hIndex(self, citations: List[int]) -> int:
+        if not citations:
+            return 0
+        citations.sort(reverse = True) # Reverse sort
+        for ind,num in enumerate(citations):
+            if ind>=num: # If such an index is found, all elements before this index must be greater than this index. Hence return this index
+                return ind
+        return len(citations) #If no such index found then all papers have atleast len(citations) citations.
+        
+            
