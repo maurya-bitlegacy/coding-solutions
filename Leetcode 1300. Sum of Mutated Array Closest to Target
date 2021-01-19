@@ -1,0 +1,14 @@
+class Solution:
+    def findBestValue(self, arr: List[int], target: int) -> int:
+        arr.sort()
+        length = len(arr)
+        for i in range(len(arr)):
+            number  = round(target/length)
+            if arr[i]>=number:
+                return number
+            else:
+                target-=arr[i]
+                length-=1
+        return arr[-1]
+# Things: rounding division gives us closest value to target instead of just integer division. If element at i is < the rounded number, then we skip this element as, cant change it anyway and then subtract it from the target and reduce length by 1,and basically repeating this procedure for rest of the array. If the element is >=rounded number, return the rounded number, as we can just change all the successive elements to the rounded number.                 
+#https://www.youtube.com/watch?v=j0KejYpI_Mc&feature=emb_title   
