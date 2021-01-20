@@ -1,0 +1,11 @@
+class Solution:
+    def customSortString(self, S: str, T: str) -> str:
+        newstring = []
+        for ch in S:
+            newstring.append(ch*T.count(ch))
+        
+        for ch in T:
+            if ch not in S:
+                newstring.append(ch)
+        return "".join(newstring)
+                
