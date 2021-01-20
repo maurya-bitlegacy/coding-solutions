@@ -1,0 +1,47 @@
+from functools import cmp_to_key
+
+class Solution:        
+    def largestNumber(self, nums):
+        
+        def cmp_func(x, y):
+            """Sorted by value of concatenated string increasingly."""
+            if y+x > x+y: #Compares as numbers
+                return 1
+            elif x == y:
+                return 0
+            else:
+                return -1
+            
+        # Build nums contains all numbers in the String format.
+        nums = [str(num) for num in nums]
+        
+        # Sort nums by cmp_func decreasingly.
+        nums.sort(key = cmp_to_key(cmp_func)) #Arguments not needed
+        
+        # Remove leading 0s, if empty return '0'.
+        return ''.join(nums).lstrip('0') or '0'
+        
+        
+class Solution {
+    public String largestNumber(int[] nums) {
+        if(nums.length==0)
+            return "";
+        String[] sa = new String[nums.length];
+        for(int i=0;i<sa.length;i++)
+            sa[i] = Integer.toString(nums[i]);
+        
+        Arrays.sort(sa, new Comparator<String>(){
+            public int compare(String a, String b){ //Overriding
+                String o1 = a+b;
+                String o2 = b+a;
+                return o2.compareTo(o1); //Compares as numbers
+            }
+        });
+        if(sa[0].equals("0")) // For all 0s
+            return "0";
+        StringBuilder sb = new StringBuilder();
+        for(String s:sa)
+            sb.append(s);
+        return sb.toString();   
+    }
+}
