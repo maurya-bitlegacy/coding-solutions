@@ -1,0 +1,30 @@
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        output=[]
+        if nums[-1]<0:
+            return reversed([num**2 for num in nums])
+        for i in range(len(nums)):
+            if nums[i]>=0:
+                pos=i
+                neg=i-1
+                break
+        #print(pos,neg)
+        while(True):
+            if neg<0:
+                output+=[num*num for num in nums[pos:]]
+                break
+            elif pos>=len(nums):
+                output+=reversed([num*num for num in nums[0:neg+1]])
+                break
+            else:
+                #print(nums[pos]**2,nums[neg]**2)
+                if (nums[pos]**2) <=(nums[neg]**2):
+                    output.append(nums[pos]**2)
+                    pos+=1
+                else:
+                    output.append(nums[neg]**2)
+                    neg-=1
+            #print(output)
+        return output
+            
+        
