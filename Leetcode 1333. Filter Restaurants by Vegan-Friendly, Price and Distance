@@ -1,0 +1,39 @@
+from functools import cmp_to_key
+class Solution:
+    def filterRestaurants(self, restaurants: List[List[int]], veganFriendly: int, maxPrice: int, maxDistance: int) -> List[int]:
+        def cmp_func(restaurant1, restaurant2):
+            if restaurant1[1]<restaurant2[1]:
+                return 1
+            elif restaurant1[1]==restaurant2[1]:
+                if restaurant1[0]<restaurant2[0]:
+                    return 1
+                else:
+                    return -1
+            else:
+                return -1  
+        
+        validrestaurant=[]
+        restNo={}
+        for index,restaurant in enumerate(restaurants):
+            #print(restaurant)
+            if veganFriendly==1 and restaurant[2]==0:
+                restaurants[index]=[]
+            elif maxPrice<restaurant[3]:
+                restaurants[index]=[]
+            elif maxDistance<restaurant[-1]:   
+                restaurants[index]=[]
+            else:
+                validrestaurant.append(restaurant)
+        print(validrestaurant)        
+        validrestaurant.sort(key=cmp_to_key(cmp_func))
+        print(validrestaurant)
+        op=[]
+        for restaurant in validrestaurant:
+            #print(restaurant[-1])
+            op.append(restaurant[0])
+        return op
+            
+        
+        
+        
+        
