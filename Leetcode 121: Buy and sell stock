@@ -1,0 +1,38 @@
+class Solution { // O(n), O(1). Self
+    public int maxProfit(int[] prices) {
+        int largest=-1;
+        int indlargest = -1;
+        int smallest=10001;
+        int indsmallest = -1;
+        int largestdiff = 0;
+        for(int i=prices.length-1;i>-1;i--){
+            if(prices[i]>largest){
+                largest = prices[i];
+                indlargest = i;
+                smallest = 10001;
+                }
+            if(prices[i]<smallest && i<indlargest){
+                smallest = prices[i];
+                indsmallest = i;
+                }
+            if(indsmallest>-1 && indsmallest<indlargest)
+                largestdiff = Math.max(largestdiff, largest-smallest);
+        }
+        return largestdiff;
+    }
+}
+
+class Solution { // O(n), O(1), Kevin
+    public int maxProfit(int[] prices) {
+        int maxprofit = 0;
+        int minvalue = Integer.MAX_VALUE;
+        
+        for(int i=0;i<prices.length;i++){
+            if(prices[i]<minvalue)
+                minvalue = prices[i];
+            else
+                maxprofit = Math.max(maxprofit,prices[i]-minvalue); //Profit obtained if sold on this day
+        }
+        return maxprofit;
+    }
+}
